@@ -11,191 +11,350 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #0F172A;
+            --secondary: #1E40AF;
+            --accent: #3B82F6;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+            --gray-50: #F9FAFB;
+            --gray-100: #F3F4F6;
+            --gray-200: #E5E7EB;
+            --gray-300: #D1D5DB;
+            --gray-600: #4B5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --red: #DC2626;
+            --green: #059669;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: #fafafa;
-            color: #1a1a1a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--light);
+            color: var(--primary);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 20px 8%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
+            padding: 20px 6%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #e5e5e5;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-bottom: 1px solid var(--gray-200);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .logo {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
-            color: #1a1a1a;
+            color: var(--primary);
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: '';
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            border-radius: 6px;
+            display: inline-block;
         }
 
         .logo span {
-            color: #2563eb;
+            color: var(--accent);
+            font-weight: 600;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 32px;
+            align-items: center;
         }
 
         .nav-links a {
-            color: #666;
+            color: var(--gray-600);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
             transition: color 0.2s;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: #1a1a1a;
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .cta-nav {
             padding: 10px 24px;
-            background: #2563eb;
+            background: var(--primary);
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             color: white;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 14px;
             cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
         }
 
         .cta-nav:hover {
-            background: #1d4ed8;
+            background: var(--gray-900);
             transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
         }
 
         section {
-            padding: 120px 8%;
+            padding: 120px 6%;
+            position: relative;
         }
 
         .hero {
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #ffffff 100%);
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1.1fr 1fr;
             gap: 80px;
             align-items: center;
             width: 100%;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 56px;
-            font-weight: 700;
+            font-size: 64px;
+            font-weight: 800;
             line-height: 1.1;
             margin-bottom: 24px;
-            color: #1a1a1a;
-            letter-spacing: -1.5px;
+            color: white;
+            letter-spacing: -2px;
         }
 
         .hero p {
             font-size: 20px;
-            color: #666;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 40px;
-            line-height: 1.6;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .btn-primary {
+            padding: 16px 32px;
+            background: white;
+            border: none;
+            border-radius: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-secondary {
+            padding: 16px 32px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         .hero-metrics {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            padding: 40px;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e5e5e5;
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .metric {
             text-align: center;
+            padding: 40px 20px;
+            background: rgba(15, 23, 42, 0.6);
         }
 
         .metric-value {
-            font-size: 36px;
-            font-weight: 700;
-            color: #2563eb;
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 8px;
+            letter-spacing: -1px;
         }
 
         .metric-label {
-            font-size: 13px;
-            color: #666;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            font-weight: 600;
         }
 
         h2 {
-            font-size: 42px;
-            font-weight: 700;
+            font-size: 48px;
+            font-weight: 800;
             margin-bottom: 16px;
-            color: #1a1a1a;
-            letter-spacing: -1px;
+            color: var(--primary);
+            letter-spacing: -1.5px;
         }
 
         .section-subtitle {
             font-size: 18px;
-            color: #666;
+            color: var(--gray-600);
             margin-bottom: 60px;
             max-width: 700px;
+            font-weight: 400;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: var(--accent);
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            margin-bottom: 24px;
         }
 
         .problem-section {
-            background: #fafafa;
+            background: white;
         }
 
         .two-column {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            gap: 24px;
         }
 
         .problem-item {
-            background: white;
+            background: var(--gray-50);
             padding: 32px;
-            border-radius: 8px;
-            border: 1px solid #e5e5e5;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--red);
+            transform: scaleY(0);
+            transition: transform 0.3s;
+        }
+
+        .problem-item:hover::before {
+            transform: scaleY(1);
         }
 
         .problem-item:hover {
-            border-color: #ef4444;
-            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.1);
+            border-color: var(--red);
+            box-shadow: 0 8px 24px rgba(220, 38, 38, 0.1);
+            transform: translateY(-2px);
         }
 
         .problem-item h3 {
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 12px;
-            color: #1a1a1a;
+            color: var(--primary);
         }
 
         .problem-item p {
-            color: #666;
+            color: var(--gray-600);
             font-size: 15px;
             margin-bottom: 16px;
+            line-height: 1.6;
         }
 
         .impact {
-            color: #d32f2f;
-            font-weight: 600;
-            font-size: 15px;
+            color: var(--red);
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .impact::before {
+            content: '▸';
+            font-size: 16px;
         }
 
         .solution-grid {
@@ -207,129 +366,207 @@
 
         .solution-item {
             background: white;
-            padding: 32px;
-            border-radius: 8px;
-            border: 1px solid #e5e5e5;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            padding: 36px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--secondary) 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .solution-item:hover::before {
+            transform: scaleX(1);
         }
 
         .solution-item:hover {
-            border-color: #2563eb;
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
+            border-color: var(--accent);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+            transform: translateY(-4px);
         }
 
         .solution-item h3 {
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             margin-bottom: 16px;
-            color: #1a1a1a;
+            color: var(--primary);
         }
 
         .solution-value {
-            font-size: 28px;
-            font-weight: 700;
-            color: #2563eb;
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 12px;
+            letter-spacing: -1px;
         }
 
         .solution-item p {
-            color: #666;
+            color: var(--gray-600);
             font-size: 14px;
             line-height: 1.6;
         }
 
         .highlight-box {
-            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             padding: 60px;
-            border-radius: 12px;
+            border-radius: 16px;
             text-align: center;
-            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
         }
 
         .highlight-box h3 {
-            font-size: 16px;
-            font-weight: 500;
+            font-size: 14px;
+            font-weight: 700;
             margin-bottom: 16px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.8;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
         .highlight-value {
-            font-size: 56px;
-            font-weight: 700;
-            letter-spacing: -1px;
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            position: relative;
+            z-index: 1;
         }
 
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+            gap: 32px;
         }
 
         .product-card {
             background: white;
             padding: 48px;
-            border-radius: 12px;
-            border: 2px solid #e5e5e5;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            border-radius: 16px;
+            border: 2px solid var(--gray-200);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 0;
         }
 
         .product-card:hover {
-            border-color: #2563eb;
-            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.12);
+            border-color: var(--accent);
+            box-shadow: 0 20px 48px rgba(59, 130, 246, 0.2);
+            transform: translateY(-6px);
+        }
+
+        .product-card > * {
+            position: relative;
+            z-index: 1;
         }
 
         .product-card h3 {
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 36px;
+            font-weight: 900;
             margin-bottom: 8px;
-            color: #2563eb;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
         }
 
         .product-type {
-            font-size: 14px;
-            color: #666;
+            font-size: 13px;
+            color: var(--gray-600);
             margin-bottom: 24px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         .product-desc {
-            color: #666;
+            color: var(--gray-600);
             margin-bottom: 32px;
             font-size: 15px;
+            line-height: 1.7;
         }
 
         .specs {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            gap: 20px;
         }
 
         .spec-item {
-            padding: 20px;
-            background: #fafafa;
-            border-radius: 6px;
+            padding: 24px;
+            background: var(--gray-50);
+            border-radius: 10px;
+            border: 1px solid var(--gray-200);
         }
 
         .spec-label {
-            font-size: 12px;
-            color: #999;
+            font-size: 11px;
+            color: var(--gray-600);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             margin-bottom: 8px;
+            font-weight: 700;
         }
 
         .spec-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2563eb;
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
         }
 
         .market-section {
-            background: #fafafa;
+            background: white;
         }
 
         .market-grid {
@@ -340,24 +577,36 @@
         }
 
         .market-card {
-            background: white;
-            padding: 32px;
-            border-radius: 8px;
-            border: 1px solid #e5e5e5;
+            background: var(--gray-50);
+            padding: 40px 32px;
+            border-radius: 12px;
+            border: 2px solid var(--gray-200);
             text-align: center;
+            transition: all 0.3s;
+        }
+
+        .market-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+            transform: translateY(-4px);
         }
 
         .market-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: #2563eb;
+            font-size: 48px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 12px;
+            letter-spacing: -1px;
         }
 
         .market-label {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.4;
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.5;
+            font-weight: 500;
         }
 
         .segments-grid {
@@ -368,59 +617,109 @@
 
         .segment-card {
             background: white;
-            padding: 24px;
-            border-radius: 8px;
-            border: 1px solid #e5e5e5;
+            padding: 32px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
             text-align: center;
+            transition: all 0.3s;
+        }
+
+        .segment-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.12);
+            transform: translateY(-2px);
         }
 
         .segment-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2563eb;
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 8px;
+            letter-spacing: -1px;
         }
 
         .segment-label {
             font-size: 13px;
-            color: #666;
-            line-height: 1.4;
+            color: var(--gray-600);
+            line-height: 1.5;
+            font-weight: 500;
         }
 
         .timeline {
             max-width: 1000px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 150px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--secondary) 100%);
         }
 
         .timeline-item {
             display: grid;
             grid-template-columns: 150px 1fr;
-            gap: 40px;
-            margin-bottom: 48px;
-            padding-bottom: 48px;
-            border-bottom: 1px solid #e5e5e5;
+            gap: 60px;
+            margin-bottom: 60px;
+            padding-bottom: 60px;
+            position: relative;
         }
 
-        .timeline-item:last-child {
-            border-bottom: none;
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 143px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--gray-100);
         }
 
         .timeline-year {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2563eb;
+            font-size: 32px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.12);
         }
 
         .timeline-content h3 {
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 20px;
+            font-weight: 700;
             margin-bottom: 8px;
-            color: #1a1a1a;
+            color: var(--primary);
         }
 
         .timeline-content p {
-            color: #666;
+            color: var(--gray-600);
             font-size: 15px;
+            line-height: 1.6;
         }
 
         .milestones-grid {
@@ -432,59 +731,74 @@
 
         .milestone {
             background: white;
-            padding: 24px;
-            border-radius: 8px;
-            border: 1px solid #e5e5e5;
+            padding: 28px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--gray-200);
             text-align: center;
+            transition: all 0.3s;
+        }
+
+        .milestone:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.12);
+            transform: translateY(-2px);
         }
 
         .milestone-quarter {
-            font-size: 12px;
-            color: #999;
+            font-size: 11px;
+            color: var(--gray-600);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             margin-bottom: 12px;
+            font-weight: 700;
         }
 
         .milestone-title {
             font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
+            font-weight: 700;
+            color: var(--primary);
             line-height: 1.4;
         }
 
         .revenue-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+            gap: 32px;
             margin-top: 60px;
         }
 
         .revenue-card {
             background: white;
             padding: 40px;
-            border-radius: 12px;
-            border: 1px solid #e5e5e5;
+            border-radius: 16px;
+            border: 2px solid var(--gray-200);
+            transition: all 0.3s;
+        }
+
+        .revenue-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+            transform: translateY(-4px);
         }
 
         .revenue-card h3 {
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 22px;
+            font-weight: 700;
             margin-bottom: 16px;
-            color: #1a1a1a;
+            color: var(--primary);
         }
 
         .revenue-card p {
-            color: #666;
+            color: var(--gray-600);
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .fund-allocation {
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid #e5e5e5;
+            padding: 48px;
+            border-radius: 16px;
+            border: 2px solid var(--gray-200);
             margin-top: 60px;
         }
 
@@ -492,8 +806,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--gray-200);
         }
 
         .allocation-item:last-child {
@@ -502,29 +816,33 @@
 
         .allocation-label {
             font-size: 15px;
-            color: #1a1a1a;
-            font-weight: 500;
+            color: var(--primary);
+            font-weight: 600;
         }
 
         .allocation-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1a1a1a;
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .achievements {
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid #e5e5e5;
+            padding: 48px;
+            border-radius: 16px;
+            border: 2px solid var(--gray-200);
             margin-top: 60px;
         }
 
         .achievement-item {
-            padding: 20px 0;
-            border-bottom: 1px solid #f0f0f0;
+            padding: 28px 0;
+            border-bottom: 1px solid var(--gray-200);
             display: flex;
-            gap: 24px;
+            gap: 32px;
+            align-items: flex-start;
         }
 
         .achievement-item:last-child {
@@ -533,49 +851,77 @@
 
         .achievement-date {
             font-size: 14px;
-            font-weight: 600;
-            color: #1a1a1a;
-            min-width: 100px;
+            font-weight: 800;
+            color: var(--accent);
+            min-width: 120px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .achievement-desc {
-            color: #666;
+            color: var(--gray-600);
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.7;
+            flex: 1;
         }
 
         .contact-section {
-            background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .contact-section h2 {
             color: white;
             margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-section p {
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 40px;
-            opacity: 0.8;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-main {
-            padding: 16px 40px;
+            padding: 18px 40px;
             background: white;
             border: none;
-            border-radius: 6px;
-            color: #2563eb;
-            font-weight: 600;
+            border-radius: 10px;
+            color: var(--primary);
+            font-weight: 700;
             font-size: 16px;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
         }
 
         .cta-main:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
         }
 
         .partners-grid {
@@ -583,26 +929,71 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 40px;
             margin-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .partner-category {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 32px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .partner-category h4 {
             font-size: 14px;
-            margin-bottom: 12px;
-            opacity: 0.6;
+            margin-bottom: 16px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
         .partner-category p {
             font-size: 15px;
             opacity: 0.9;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 40px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--gray-600);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         @media (max-width: 1024px) {
             .hero-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 60px;
             }
 
             .solution-grid {
@@ -612,6 +1003,10 @@
             .market-grid, .segments-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            .products-grid, .revenue-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -619,28 +1014,56 @@
                 padding: 80px 5%;
             }
 
+            nav {
+                padding: 16px 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
             .hero h1 {
-                font-size: 36px;
+                font-size: 42px;
             }
 
             h2 {
-                font-size: 32px;
+                font-size: 36px;
             }
 
             .two-column, .solution-grid, .products-grid, .market-grid, .segments-grid, .milestones-grid, .revenue-grid {
                 grid-template-columns: 1fr;
             }
 
+            .timeline::before {
+                left: 20px;
+            }
+
             .timeline-item {
                 grid-template-columns: 1fr;
-                gap: 16px;
+                gap: 20px;
+                padding-left: 50px;
+            }
+
+            .timeline-item::before {
+                left: 13px;
+            }
+
+            .hero-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                flex-direction: column;
+                gap: 24px;
             }
         }
     </style>
 </head>
 <body>
     <nav>
-        <div class="logo">RAUDRANEX <span>SPACE TECHNOLOGIES</span></div>
+        <div class="logo">
+            <span>RAUDRANEX</span>
+        </div>
         <div class="nav-links">
             <a href="#problem">Challenge</a>
             <a href="#solution">Solution</a>
@@ -648,17 +1071,17 @@
             <a href="#market">Market</a>
             <a href="#roadmap">Roadmap</a>
         </div>
-        <button class="cta-nav" onclick="scrollToContact()">Contact</button>
+        <button class="cta-nav" onclick="scrollToContact()">Investor Contact</button>
     </nav>
 
     <section class="hero">
         <div class="hero-grid">
             <div>
-                <h1>Redefining How Spacecraft Move in Space</h1>
-                <p>High-efficiency, modular electric propulsion technologies that make space logistics and deep-space exploration practical, scalable, and sustainable.</p>
-                <div style="display: flex; gap: 16px;">
-                    <button class="cta-main">Download Deck</button>
-                    <button class="cta-main" style="background: transparent; border: 1px solid #1a1a1a; color: #1a1a1a;">Schedule Meeting</button>
+                <h1>Redefining Spacecraft Propulsion for the New Space Era</h1>
+                <p>High-efficiency, modular electric propulsion technologies that make space logistics and deep-space exploration practical, scalable, and economically sustainable.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary">Download Investor Deck</button>
+                    <button class="btn-secondary">Schedule Meeting</button>
                 </div>
             </div>
             <div class="hero-metrics">
@@ -678,70 +1101,93 @@
         </div>
     </section>
 
-    <section id="problem" class="problem-section">
-        <h2>The Challenge</h2>
-        <p class="section-subtitle">Legacy electric propulsion systems face critical limitations that increase mission costs and constrain capabilities.</p>
-        
-        <div class="two-column">
-            <div class="problem-item">
-                <h3>Bulky Propellant Storage</h3>
-                <p>Occupies 30-65% of satellite's mass</p>
-                <div class="impact">• Handling & storage costs raised by 30%</div>
+    <section style="padding-top: 80px; padding-bottom: 80px;">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value">100x</div>
+                <div class="stat-label">Thrust Density</div>
             </div>
-            
-            <div class="problem-item">
-                <h3>Increased Launch Costs</h3>
-                <p>Launch adds 40% to build cost</p>
-                <div class="impact">• 20-30% loss in payload capacity</div>
+            <div class="stat-item">
+                <div class="stat-value">2000s</div>
+                <div class="stat-label">Specific Impulse</div>
             </div>
-            
-            <div class="problem-item">
-                <h3>Low Thrust Density</h3>
-                <p>Limits mission flexibility and maneuverability</p>
-                <div class="impact">• 5-15% mission revenue loss from slow deployment</div>
+            <div class="stat-item">
+                <div class="stat-value">4+</div>
+                <div class="stat-label">Fuel Options</div>
             </div>
-            
-            <div class="problem-item">
-                <h3>Energy Inefficiency</h3>
-                <p>Plasma-to-thrust conversion losses</p>
-                <div class="impact">• 3-8% mission value loss</div>
-            </div>
-            
-            <div class="problem-item">
-                <h3>Bulky Xenon Storage</h3>
-                <p>Heavy storage systems add mass penalties</p>
-                <div class="impact">• 2-5% additional mission cost</div>
-            </div>
-            
-            <div class="problem-item">
-                <h3>Supply Chain Fragility</h3>
-                <p>Xenon dependence creates vulnerability</p>
-                <div class="impact">• 5-10% added risk per mission</div>
+            <div class="stat-item">
+                <div class="stat-value">3x</div>
+                <div class="stat-label">Mission ROI</div>
             </div>
         </div>
     </section>
 
-    <section id="solution">
-        <h2>Our Solution</h2>
-        <p class="section-subtitle">Advanced electric propulsion technology delivering superior performance across all key metrics.</p>
+    <section id="problem" class="problem-section">
+        <div class="section-tag">The Challenge</div>
+        <h2>Critical Industry Pain Points</h2>
+        <p class="section-subtitle">Legacy electric propulsion systems face fundamental limitations that significantly increase mission costs and constrain operational capabilities.</p>
+        
+        <div class="two-column">
+            <div class="problem-item">
+                <h3>Bulky Propellant Storage</h3>
+                <p>Traditional systems occupy 30-65% of satellite's total mass budget</p>
+                <div class="impact">30% increase in handling & storage costs</div>
+            </div>
+            
+            <div class="problem-item">
+                <h3>Increased Launch Costs</h3>
+                <p>Launch expenses add 40% to total build cost</p>
+                <div class="impact">20-30% loss in payload capacity</div>
+            </div>
+            
+            <div class="problem-item">
+                <h3>Low Thrust Density</h3>
+                <p>Severely limits mission flexibility and orbital maneuverability</p>
+                <div class="impact">5-15% mission revenue loss from slow deployment</div>
+            </div>
+            
+            <div class="problem-item">
+                <h3>Energy Inefficiency</h3>
+                <p>Significant plasma-to-thrust conversion losses</p>
+                <div class="impact">3-8% mission value loss</div>
+            </div>
+            
+            <div class="problem-item">
+                <h3>Heavy Xenon Systems</h3>
+                <p>Bulky storage infrastructure adds severe mass penalties</p>
+                <div class="impact">2-5% additional mission cost</div>
+            </div>
+            
+            <div class="problem-item">
+                <h3>Supply Chain Vulnerability</h3>
+                <p>Single-fuel dependence creates critical risk exposure</p>
+                <div class="impact">5-10% added risk premium per mission</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solution" style="background: var(--gray-50);">
+        <div class="section-tag">Our Solution</div>
+        <h2>Revolutionary Propulsion Technology</h2>
+        <p class="section-subtitle">Advanced electric propulsion delivering superior performance across all critical metrics with proven technical validation.</p>
         
         <div class="solution-grid">
             <div class="solution-item">
                 <h3>High Thrust Density</h3>
                 <div class="solution-value">100x More</div>
-                <p>1-10 N/m² thrust density enables unprecedented maneuverability and faster mission deployment</p>
+                <p>1-10 N/m² thrust density enables unprecedented maneuverability and dramatically faster mission deployment timelines</p>
             </div>
             
             <div class="solution-item">
                 <h3>Compact Storage</h3>
                 <div class="solution-value">2-5x Mass Cut</div>
-                <p>Up to 25% volume savings with 3-7% mission cost reduction through efficient design</p>
+                <p>Up to 25% volume savings delivering 3-7% mission cost reduction through efficient propellant architecture</p>
             </div>
             
             <div class="solution-item">
                 <h3>High Specific Impulse</h3>
                 <div class="solution-value">1300-2000s</div>
-                <p>Superior fuel efficiency extending mission life by 30-50%</p>
+                <p>Superior fuel efficiency extending operational mission life by 30-50%</p>
             </div>
             
             <div class="solution-item">
@@ -759,43 +1205,44 @@
             <div class="solution-item">
                 <h3>Smart Thrust Control</h3>
                 <div class="solution-value">10-40x Faster</div>
-                <p>Rapid response with 2x propellant efficiency for precise maneuvering</p>
+                <p>Rapid response with 2x propellant efficiency for precise orbital maneuvering</p>
             </div>
             
             <div class="solution-item">
                 <h3>Plug & Play Design</h3>
                 <div class="solution-value">40% Less</div>
-                <p>Integration effort reduced through modularity, 2x faster deployment</p>
+                <p>Integration effort reduced through modularity, 2x faster deployment cycle</p>
             </div>
             
             <div class="solution-item">
                 <h3>Green & Safe</h3>
                 <div class="solution-value">3-8% Savings</div>
-                <p>Non-toxic propellants reduce handling costs and environmental impact</p>
+                <p>Non-toxic propellants significantly reduce handling costs and environmental impact</p>
             </div>
             
             <div class="solution-item">
                 <h3>Extended Mission Life</h3>
                 <div class="solution-value">3x ROI</div>
-                <p>Single tank configuration, 12-15x ROI with dual tank systems</p>
+                <p>Single tank configuration, 12-15x ROI potential with dual tank systems</p>
             </div>
         </div>
 
         <div class="highlight-box">
-            <h3>Total Mission Enhancement</h3>
+            <h3>Total Mission Value Enhancement</h3>
             <div class="highlight-value">35-60% Cost Reduction</div>
         </div>
     </section>
 
     <section id="products">
+        <div class="section-tag">Technology Platform</div>
         <h2>Product Portfolio</h2>
-        <p class="section-subtitle">Scalable thruster solutions for diverse mission requirements from LEO to deep space.</p>
+        <p class="section-subtitle">Scalable, mission-proven thruster solutions engineered for diverse applications from LEO constellations to deep space exploration.</p>
         
         <div class="products-grid">
             <div class="product-card">
                 <h3>MAYUKHA</h3>
                 <div class="product-type">AF-MPD Thruster</div>
-                <p class="product-desc">Applied-field magnetoplasmadynamic thruster designed for high-power solar electric propulsion and deep-space missions. Delivers superior thrust density with multi-fuel flexibility.</p>
+                <p class="product-desc">Applied-field magnetoplasmadynamic thruster designed for high-power solar electric propulsion and deep-space missions. Delivers superior thrust density with multi-fuel flexibility and proven scalability.</p>
                 
                 <div class="specs">
                     <div class="spec-item">
@@ -815,13 +1262,13 @@
                         <div class="spec-value">1.0 kW</div>
                     </div>
                 </div>
-                <p style="margin-top: 24px; color: #999; font-size: 13px;">*Scalable across missions & payloads</p>
+                <p style="margin-top: 24px; color: var(--gray-600); font-size: 13px; font-style: italic;">*Scalable architecture across diverse missions & payload classes</p>
             </div>
             
             <div class="product-card">
                 <h3>MIHIRA</h3>
                 <div class="product-type">RF-Gridded Ion Thruster</div>
-                <p class="product-desc">Radio-frequency gridded ion thruster enabling air-breathing electric propulsion for Very Low Earth Orbit (VLEO) satellites. Innovative design for emerging orbital markets.</p>
+                <p class="product-desc">Radio-frequency gridded ion thruster enabling air-breathing electric propulsion for Very Low Earth Orbit (VLEO) satellites. Breakthrough design for emerging orbital markets and extended mission capabilities.</p>
                 
                 <div class="specs">
                     <div class="spec-item">
@@ -841,32 +1288,33 @@
                         <div class="spec-value">1.0 kW</div>
                     </div>
                 </div>
-                <p style="margin-top: 24px; color: #999; font-size: 13px;">*Air-breathing electric propulsion & VLEO operations</p>
+                <p style="margin-top: 24px; color: var(--gray-600); font-size: 13px; font-style: italic;">*Air-breathing electric propulsion & VLEO operations capability</p>
             </div>
         </div>
 
-        <div style="margin-top: 60px;">
-            <h3 style="font-size: 24px; margin-bottom: 32px; color: #1a1a1a;">Key Competencies</h3>
+        <div style="margin-top: 80px;">
+            <h3 style="font-size: 28px; margin-bottom: 40px; color: var(--primary); font-weight: 800;">Core Technical Competencies</h3>
             <div class="solution-grid">
                 <div class="solution-item">
                     <h3>High Power Capability</h3>
-                    <p>Enables high-power solar electric propulsion for mega constellations and deep-space markets (~$30B opportunity)</p>
+                    <p>Enables high-power solar electric propulsion for mega constellations and deep-space markets representing ~$30B opportunity</p>
                 </div>
                 <div class="solution-item">
-                    <h3>High Thrust & Efficiency Modes</h3>
-                    <p>Flexible operation optimizing for mission phase requirements</p>
+                    <h3>Operational Flexibility</h3>
+                    <p>Multiple high thrust and efficiency modes optimizing performance for specific mission phase requirements</p>
                 </div>
                 <div class="solution-item">
                     <h3>Cost Volatility Reduction</h3>
-                    <p>15-25% reduction through multi-fuel capability and supply chain diversification</p>
+                    <p>15-25% reduction in propellant cost exposure through multi-fuel capability and supply chain diversification</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="market" class="market-section">
-        <h2>Market Opportunity</h2>
-        <p class="section-subtitle">The electric propulsion satellite market is experiencing robust growth at 10.22% CAGR during 2025-2032.</p>
+        <div class="section-tag">Market Opportunity</div>
+        <h2>Massive Addressable Market</h2>
+        <p class="section-subtitle">The electric propulsion satellite market is experiencing robust growth at 10.22% CAGR during 2025-2032, driven by mega-constellations and deep space missions.</p>
         
         <div class="market-grid">
             <div class="market-card">
@@ -890,7 +1338,7 @@
             </div>
         </div>
 
-        <h3 style="font-size: 24px; margin-bottom: 32px; color: #1a1a1a; margin-top: 60px;">Key Market Segments (by 2030)</h3>
+        <h3 style="font-size: 28px; margin-bottom: 40px; color: var(--primary); margin-top: 80px; font-weight: 800;">Key Market Segments (by 2030)</h3>
         <div class="segments-grid">
             <div class="segment-card">
                 <div class="segment-value">$20.7B</div>
@@ -913,31 +1361,32 @@
             </div>
         </div>
 
-        <div style="background: white; padding: 40px; border-radius: 12px; border: 1px solid #e5e5e5; margin-top: 60px;">
-            <h3 style="font-size: 20px; margin-bottom: 24px; color: #1a1a1a;">Target Customers</h3>
+        <div style="background: white; padding: 48px; border-radius: 16px; border: 2px solid var(--gray-200); margin-top: 80px;">
+            <h3 style="font-size: 24px; margin-bottom: 32px; color: var(--primary); font-weight: 800;">Target Customer Segments</h3>
             <div class="two-column">
-                <div>
-                    <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">B2B</h4>
-                    <p style="color: #666; font-size: 15px;">Satellite manufacturers and launch service providers requiring advanced propulsion solutions</p>
+                <div style="background: var(--gray-50); padding: 32px; border-radius: 12px;">
+                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--accent);">B2B Segment</h4>
+                    <p style="color: var(--gray-600); font-size: 15px; line-height: 1.7;">Satellite manufacturers and launch service providers requiring advanced propulsion solutions for commercial operations</p>
                 </div>
-                <div>
-                    <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">B2G</h4>
-                    <p style="color: #666; font-size: 15px;">Space and defense agencies with strategic propulsion requirements</p>
+                <div style="background: var(--gray-50); padding: 32px; border-radius: 12px;">
+                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--accent);">B2G Segment</h4>
+                    <p style="color: var(--gray-600); font-size: 15px; line-height: 1.7;">Space and defense agencies with strategic propulsion requirements and long-term procurement contracts</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="roadmap">
-        <h2>Technology Roadmap</h2>
-        <p class="section-subtitle">Strategic development path from proof of concept to global deployment and deep space missions.</p>
+    <section id="roadmap" style="background: var(--gray-50);">
+        <div class="section-tag">Strategic Roadmap</div>
+        <h2>Technology Development Path</h2>
+        <p class="section-subtitle">Systematic progression from proof of concept validation to global deployment and deep space mission enablement.</p>
         
         <div class="timeline">
             <div class="timeline-item">
                 <div class="timeline-year">2025</div>
                 <div class="timeline-content">
                     <h3>Technology Validation</h3>
-                    <p>Achieve TRL-3/4 of MAYUKHA Thruster with comprehensive proof of concept validation</p>
+                    <p>Achieve TRL-3/4 of MAYUKHA Thruster with comprehensive proof of concept validation and performance characterization</p>
                 </div>
             </div>
             
@@ -945,7 +1394,7 @@
                 <div class="timeline-year">2026</div>
                 <div class="timeline-content">
                     <h3>Full-Scale Development</h3>
-                    <p>Complete development of MAYUKHA Thruster with sub-system integration, firing campaigns, and commercialization of subsystems</p>
+                    <p>Complete development of MAYUKHA Thruster with sub-system integration, extensive firing campaigns, and commercialization of critical subsystems</p>
                 </div>
             </div>
             
@@ -953,7 +1402,7 @@
                 <div class="timeline-year">2027</div>
                 <div class="timeline-content">
                     <h3>Flight Demonstration</h3>
-                    <p>Flight demonstration of MAYUKHA Thruster and initiation of proof of concept for MIHIRA Thruster</p>
+                    <p>On-orbit flight demonstration of MAYUKHA Thruster and initiation of proof of concept for MIHIRA Thruster technology</p>
                 </div>
             </div>
             
@@ -961,7 +1410,7 @@
                 <div class="timeline-year">2028</div>
                 <div class="timeline-content">
                     <h3>Air-Breathing Systems & OTV</h3>
-                    <p>Deployment of air-breathing electric propulsion systems and development of Orbit Transfer Vehicle (OTV) for on-orbit and de-orbit services</p>
+                    <p>Deployment of air-breathing electric propulsion systems and development of Orbit Transfer Vehicle (OTV) for comprehensive on-orbit and de-orbit services</p>
                 </div>
             </div>
             
@@ -969,7 +1418,7 @@
                 <div class="timeline-year">2029</div>
                 <div class="timeline-content">
                     <h3>OTV Operations</h3>
-                    <p>Deployment of Orbit Transfer Vehicle for satellite servicing operations</p>
+                    <p>Full operational deployment of Orbit Transfer Vehicle for satellite servicing and logistics operations</p>
                 </div>
             </div>
             
@@ -977,12 +1426,12 @@
                 <div class="timeline-year">2030+</div>
                 <div class="timeline-content">
                     <h3>Global Expansion</h3>
-                    <p>International expansion, scientific missions, and strategic collaborations for deep space exploration</p>
+                    <p>International market expansion, scientific mission enablement, and strategic collaborations for deep space exploration programs</p>
                 </div>
             </div>
         </div>
 
-        <h3 style="font-size: 24px; margin-bottom: 32px; color: #1a1a1a; margin-top: 80px;">2025-2027 Milestones</h3>
+        <h3 style="font-size: 28px; margin-bottom: 40px; color: var(--primary); margin-top: 100px; font-weight: 800;">Near-Term Milestones (2025-2027)</h3>
         <div class="milestones-grid">
             <div class="milestone">
                 <div class="milestone-quarter">Q4 2025</div>
@@ -1007,19 +1456,20 @@
         </div>
     </section>
 
-    <section style="background: #fafafa;">
-        <h2>Revenue Model</h2>
-        <p class="section-subtitle">Multiple revenue streams creating sustainable, scalable business model.</p>
+    <section>
+        <div class="section-tag">Business Model</div>
+        <h2>Revenue Strategy</h2>
+        <p class="section-subtitle">Diversified revenue streams creating a sustainable, scalable business model with multiple paths to profitability.</p>
         
         <div class="revenue-grid">
             <div class="revenue-card">
                 <h3>Thruster Sales & Licensing</h3>
-                <p>Direct sales of MAYUKHA and MIHIRA thrusters to satellite manufacturers and operators. Licensing technology for integration into customer platforms.</p>
+                <p>Direct sales of MAYUKHA and MIHIRA thrusters to satellite manufacturers and operators. Strategic technology licensing for integration into customer platforms and product lines.</p>
             </div>
             
             <div class="revenue-card">
                 <h3>Subsystem Monetization</h3>
-                <p>Commercializing 50W-5kW space-grade power processing units (PPUs) with high efficiency (>92%) and 15,000+ hour endurance. Saves customers $2-5M in R&D and cuts integration time by up to 12 months. 20-30% subsystem cost reduction adds $10M+ payload value.</p>
+                <p>Commercializing 50W-5kW space-grade power processing units (PPUs) with high efficiency (>92%) and 15,000+ hour endurance. Saves customers $2-5M in R&D and cuts integration time by up to 12 months.</p>
             </div>
             
             <div class="revenue-card">
@@ -1029,14 +1479,14 @@
             
             <div class="revenue-card">
                 <h3>On-Orbit Services</h3>
-                <p>Real-time propulsion diagnostics and performance monitoring services. Extends thruster life 25-40% and prevents $10M-30M in mission losses while generating $200K-500K per year in recurring revenue.</p>
+                <p>Real-time propulsion diagnostics and performance monitoring services. Extends thruster life 25-40% and prevents $10M-30M in mission losses while generating $200K-500K annually in recurring revenue.</p>
             </div>
         </div>
 
         <div class="fund-allocation">
-            <h3 style="font-size: 24px; margin-bottom: 32px; color: #1a1a1a;">Fund Allocation Strategy</h3>
+            <h3 style="font-size: 28px; margin-bottom: 40px; color: var(--primary); font-weight: 800;">Capital Allocation Strategy</h3>
             <div class="allocation-item">
-                <div class="allocation-label">Hardware & Setup</div>
+                <div class="allocation-label">Hardware & Infrastructure Setup</div>
                 <div class="allocation-value">40%</div>
             </div>
             <div class="allocation-item">
@@ -1052,7 +1502,7 @@
                 <div class="allocation-value">20%</div>
             </div>
             <div class="allocation-item">
-                <div class="allocation-label">Raw Materials</div>
+                <div class="allocation-label">Raw Materials & Components</div>
                 <div class="allocation-value">13%</div>
             </div>
             <div class="allocation-item">
@@ -1064,69 +1514,70 @@
                 <div class="allocation-value">8%</div>
             </div>
             <div class="allocation-item">
-                <div class="allocation-label">Quality Control</div>
+                <div class="allocation-label">Quality Control & Testing</div>
                 <div class="allocation-value">6%</div>
             </div>
             <div class="allocation-item">
-                <div class="allocation-label">Launch & Operations</div>
+                <div class="allocation-label">Launch & Flight Operations</div>
                 <div class="allocation-value">6%</div>
             </div>
             <div class="allocation-item">
-                <div class="allocation-label">Contingency</div>
+                <div class="allocation-label">Contingency Reserve</div>
                 <div class="allocation-value">5%</div>
             </div>
         </div>
     </section>
 
-    <section>
-        <h2>Journey & Achievements</h2>
-        <p class="section-subtitle">Recognition and validation from leading space organizations and institutions.</p>
+    <section style="background: white;">
+        <div class="section-tag">Track Record</div>
+        <h2>Achievements & Validation</h2>
+        <p class="section-subtitle">Recognition and technical validation from leading space organizations, research institutions, and industry partners.</p>
         
         <div class="achievements">
             <div class="achievement-item">
                 <div class="achievement-date">May 2024</div>
-                <div class="achievement-desc">Achieved Proof of Concept for AF-MPD Thruster technology, validating core technical approach</div>
+                <div class="achievement-desc">Successfully achieved Proof of Concept for AF-MPD Thruster technology, validating core technical approach and performance parameters</div>
             </div>
             
             <div class="achievement-item">
                 <div class="achievement-date">May 2025</div>
-                <div class="achievement-desc">Served as Principal Investigators for RF Gridded Ion & Dipolar ECR Thruster development at LPSC-ISRO</div>
+                <div class="achievement-desc">Served as Principal Investigators for RF Gridded Ion & Dipolar ECR Thruster development programs at LPSC-ISRO</div>
             </div>
             
             <div class="achievement-item">
                 <div class="achievement-date">August 2025</div>
-                <div class="achievement-desc">Winners at Space Ideathon at IIT Tirupati & IIIT Hyderabad organized by ISRO & INSPACe</div>
+                <div class="achievement-desc">Winners at Space Ideathon at IIT Tirupati & IIIT Hyderabad, organized by ISRO & INSPACe, among 500+ competing teams</div>
             </div>
             
             <div class="achievement-item">
                 <div class="achievement-date">Sept 2025</div>
-                <div class="achievement-desc">Presented breakthrough research at Global Space Exploration Conference, New Delhi</div>
+                <div class="achievement-desc">Presented breakthrough research findings at Global Space Exploration Conference, New Delhi, to international audience</div>
             </div>
             
             <div class="achievement-item">
                 <div class="achievement-date">Dec 2024 – Apr 2025</div>
-                <div class="achievement-desc">Selected to present at International Electric Propulsion Conference 2025, London</div>
+                <div class="achievement-desc">Selected to present technical paper at International Electric Propulsion Conference 2025, London, premier global forum</div>
             </div>
         </div>
     </section>
 
     <section class="contact-section" id="contact">
-        <h2>Partner With Us</h2>
-        <p>Join Raudranex in capturing the $30B electric propulsion market opportunity</p>
+        <h2>Partner With Raudranex</h2>
+        <p>Join us in capturing the $30B electric propulsion market opportunity and shaping the future of space exploration</p>
         <button class="cta-main">Schedule Investor Meeting</button>
         
         <div class="partners-grid">
             <div class="partner-category">
-                <h4>Strategic Partnerships (MOU/LOI)</h4>
+                <h4>Strategic Partnerships</h4>
                 <p>Collaborative development agreements with industry leaders</p>
                 <p>Technology integration partnerships with satellite manufacturers</p>
-                <p>Joint ventures for market expansion</p>
+                <p>Joint ventures for international market expansion</p>
             </div>
             <div class="partner-category">
                 <h4>Investment Focus Areas</h4>
                 <p>Pre-seed funding for TRL advancement and prototype development</p>
-                <p>Facility development and testing infrastructure</p>
-                <p>Market entry and commercialization strategy</p>
+                <p>Facility development and testing infrastructure buildout</p>
+                <p>Market entry strategy and commercialization execution</p>
             </div>
         </div>
     </section>
@@ -1148,7 +1599,7 @@
 
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -1160,12 +1611,15 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.problem-item, .solution-item, .product-card, .market-card, .segment-card, .timeline-item, .revenue-card, .milestone').forEach(el => {
+        document.querySelectorAll('.problem-item, .solution-item, .product-card, .market-card, .segment-card, .timeline-item, .revenue-card, .milestone, .achievement-item').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
             observer.observe(el);
         });
+
+        // Smooth scroll enhancement
+        document.documentElement.style.scrollBehavior = 'smooth';
     </script>
 </body>
 </html>
